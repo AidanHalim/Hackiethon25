@@ -27,7 +27,7 @@ const StarRatingPage = () => {
   return (
     <motion.div initial={{ y: 20, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ type: 'spring', delay: 0.5 }}>
         <Typography sx={{ mb: 1.5 }}>How Was Your Day?</Typography>
-        <Box sx={{ width: 200, display: 'flex', alignItems: 'center' }}>
+        <Box sx={{ width: 200, display: 'flex', alignItems: 'center', flexDirection: 'column' }}>
             <Rating
                 name="hover-feedback"
                 value={value}
@@ -43,7 +43,11 @@ const StarRatingPage = () => {
             />
 
             {value !== null && (
-                <Box sx={{ ml: 2 }}>{labels[hover !== -1 ? hover : value]}</Box>
+                <Box sx={{ ml: 2 }}>
+                    <Typography sx={{ whiteSpace: 'pre-line' }}>
+                        {labels[hover !== -1 ? hover : value]}
+                    </Typography>
+            </Box>
             )}
         </Box>
     </motion.div>

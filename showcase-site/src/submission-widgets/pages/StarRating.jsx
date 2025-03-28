@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import StarIcon from '@mui/icons-material/Star';
 import { Typography, Box, Rating } from '@mui/material';
+import { motion } from 'framer-motion';
 
 const labels = {
-    0.5: 'Useless',
-    1: 'Useless+',
-    1.5: 'Poor',
-    2: 'Poor+',
+    0.5: 'Horrible',
+    1: 'Horrible+',
+    1.5: 'Bad',
+    2: 'Bad+',
     2.5: 'Ok',
     3: 'Ok+',
     3.5: 'Good',
@@ -24,10 +25,7 @@ const StarRatingPage = () => {
   const [hover, setHover] = React.useState(-1);
 
   return (
-    <>
-        <Box sx={{ display: 'flex', alignItems: 'center'}}>
-            <Typography variant="h5">Journal</Typography>
-        </Box>
+    <motion.div initial={{ y: 20, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ type: 'spring', delay: 0.5 }}>
         <Typography sx={{ mb: 1.5 }}>How Was Your Day?</Typography>
         <Box sx={{ width: 200, display: 'flex', alignItems: 'center' }}>
             <Rating
@@ -48,7 +46,7 @@ const StarRatingPage = () => {
                 <Box sx={{ ml: 2 }}>{labels[hover !== -1 ? hover : value]}</Box>
             )}
         </Box>
-    </>
+    </motion.div>
   );
 };
 

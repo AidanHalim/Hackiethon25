@@ -2,20 +2,27 @@ import { Outlet } from "react-router-dom";
 import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
 import { useNavigate, useLocation } from 'react-router-dom';
+import { Typography } from "@mui/material";
+import { motion } from 'framer-motion';
+import React, { useEffect, useState } from "react";
+
 
 const JournalLayout = () => {
+  const [isInitialLoad, setIsInitialLoad] = useState(true);
   const navigate = useNavigate();
   const location = useLocation();
 
   const handleBackClick = () => {
-    if (location.pathname === 'journal/star-rating') {
-      navigate('/journal');
-    } else if (location.pathname === 'journal/star-rating') {
-      navigate('journal/star-rating');
-    } else if (location.pathname === 'journal/goal-create') {
-      navigate('journal/goal-review');
-    } else if (location.pathname === 'journal/highlights') {
-      navigate('journal/goal-create');
+    if (location.pathname === '/journal/star-rating') {
+      navigate(-1);
+    } else if (location.pathname === '/journal/star-rating') {
+      navigate('star-rating');
+    } else if (location.pathname === '/journal/goal-review') {
+      navigate('star-rating');
+    } else if (location.pathname === '/journal/goal-create') {
+      navigate('goal-review');
+    } else if (location.pathname === '/journal/highlights') {
+      navigate('goal-create');
     } else {
       navigate(-1);
     }
@@ -26,21 +33,33 @@ const JournalLayout = () => {
     navigate('/');
   }
 
+  useEffect(() => {
+    setIsInitialLoad(false);
+  }, []);
+  
   return (
-
     <div>
-        <Outlet />
-        <Grid container rowSpacing={1} columns={3}>
-          <Grid size={1}>
-            <Button onClick={handleBackClick}>Back</Button>
-          </Grid>
-          <Grid size={1}></Grid>
-          <Grid size={1}>
-            <Button onClick={handleMenuClick}>Menu</Button>
-          </Grid>
+      {isInitialLoad ? (
+        <motion.div initial={{ y: 10, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.5 }}>
+          <Typography variant="h4" sx={{ mb: 2 }}>Journal</Typography>
+        </motion.div>
+      ) : (
+        <Typography variant="h4" sx={{ mb: 2 }}>Journal</Typography>
+      )}
+  
+      <Outlet />
+  
+      <Grid container rowSpacing={1} columns={3} sx={{ mt: 2 }}>
+        <Grid size={1}>
+          <Button onClick={handleBackClick}>Back</Button>
         </Grid>
+        <Grid size={1}></Grid>
+        <Grid size={1}>
+          <Button onClick={handleMenuClick}>Menu</Button>
+        </Grid>
+      </Grid>
     </div>
-  );
+  )
 };
 
 export default JournalLayout;

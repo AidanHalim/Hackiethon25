@@ -1,17 +1,30 @@
 import { Outlet } from "react-router-dom";
 import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
+import { useNavigate, useLocation } from 'react-router-dom';
 
 const Layout = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+
   const handleBackClick = () => {
-    if (location.pathname === '/star-page') {
-      navigate('/home');
-    } else if (location.pathname === '/test') {
-      navigate('/other-page');
+    if (location.pathname === '/star-rating') {
+      navigate('/');
+    } else if (location.pathname === '/goal-review') {
+      navigate('/star-rating');
+    } else if (location.pathname === '/goal-create') {
+      navigate('/goal-review');
+    } else if (location.pathname === '/highlights') {
+      navigate('/goal-create');
     } else {
       navigate(-1);
     }
+    // navigate(-1);
   };
+
+  const handleMenuClick = () => {
+    navigate('/');
+  }
 
   return (
 
@@ -26,7 +39,7 @@ const Layout = () => {
           <Grid size={1}></Grid>
 
           <Grid size={1}>
-            <Button onClick={handleBackClick}>Menu</Button>
+            <Button onClick={handleMenuClick}>Menu</Button>
           </Grid>
         </Grid>
       </div>

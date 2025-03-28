@@ -5,6 +5,7 @@ import Test from '../pages/Test';
 import GoalReview from "../pages/GoalReview.jsx";
 import GoalCreate from "../pages/GoalCreate.jsx";
 import Highlights from "../pages/Highlights.jsx";
+import StarRatingPage from '../pages/StarRating.jsx';
 
 const routes = [
   {
@@ -16,8 +17,8 @@ const routes = [
         element: <Menu />,
       },
       {
-        path: "/test",
-        element: <Test />,
+        path: "/star-rating",
+        element: <StarRatingPage />,
       },
       {
         path: "/goal-review",

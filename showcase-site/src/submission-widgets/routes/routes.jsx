@@ -1,16 +1,21 @@
 import { createBrowserRouter } from 'react-router-dom';  // Correct import
 import Layout from '../Base/Layout';
 import Menu from '../pages/Menu';
+import Test from '../pages/Test';
 
 const routes = [
   {
     path: "/",
     element: <Layout />,
-    children: [  // Correct property name (lowercase 'children')
+    children: [
       {
-        index: true,  // Default route ("/")
+        index: true,
         element: <Menu />,
-      }
+      },
+      {
+        path: "/test",
+        element: <Test />,
+    }
     ]
   },
 ];

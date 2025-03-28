@@ -2,6 +2,9 @@ import { createBrowserRouter } from 'react-router-dom';  // Correct import
 import Layout from '../Base/Layout';
 import Menu from '../pages/Menu';
 import Test from '../pages/Test';
+import GoalReview from "../pages/GoalReview.jsx";
+import GoalCreate from "../pages/GoalCreate.jsx";
+import Highlights from "../pages/Highlights.jsx";
 
 const routes = [
   {
@@ -15,7 +18,19 @@ const routes = [
       {
         path: "/test",
         element: <Test />,
-    }
+      },
+      {
+        path: "/goal-review",
+        element: <GoalReview />,
+      },
+      {
+        path: "/goal-create",
+        element: <GoalCreate />
+      },
+      {
+        path: "/highlights",
+        element: <Highlights />
+      }
     ]
   },
 ];

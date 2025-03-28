@@ -6,6 +6,7 @@ import GoalReview from "../pages/GoalReview.jsx";
 import GoalCreate from "../pages/GoalCreate.jsx";
 import Highlights from "../pages/Highlights.jsx";
 import StarRatingPage from '../pages/StarRating.jsx';
+import JournalLayout from '../base/JournalLayout.jsx';
 
 const routes = [
   {
@@ -17,21 +18,27 @@ const routes = [
         element: <Menu />,
       },
       {
-        path: "/star-rating",
-        element: <StarRatingPage />,
+        path: "journal",
+        element: <JournalLayout />,
+        children: [
+            {
+                path: "star-rating",
+                element: <StarRatingPage />,
+            },
+            {
+                path: "goal-review",
+                element: <GoalReview />,
+            },
+            {
+                path: "goal-create",
+                element: <GoalCreate />
+            },
+            {
+                path: "highlights",
+                element: <Highlights />
+            }
+        ]
       },
-      {
-        path: "/goal-review",
-        element: <GoalReview />,
-      },
-      {
-        path: "/goal-create",
-        element: <GoalCreate />
-      },
-      {
-        path: "/highlights",
-        element: <Highlights />
-      }
     ]
   },
 ];

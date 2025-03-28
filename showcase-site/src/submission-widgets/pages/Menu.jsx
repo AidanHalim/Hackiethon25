@@ -9,7 +9,7 @@ const Menu = () => {
   return (
     <>
         <h1>hello</h1>
-        <Link to="/star-rating">Go to Test</Link>
+        <Link to="journal/star-rating">Go to Test</Link>
     </>
   );
 };

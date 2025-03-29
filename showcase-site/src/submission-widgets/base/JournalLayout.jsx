@@ -33,35 +33,35 @@ const JournalLayout = ({ journalState }) => {
 
   
   return (
-      <div>
-        {/* {isInitialLoad ? ( */}
-          <motion.div initial={{ y: 10, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.5 }}>
-            <Typography variant="h4" sx={{ mb: 2 }}>Journal</Typography>
+      <div style={{color: "white"}}>
+          {/* {isInitialLoad ? ( */}
+          <motion.div initial={{y: 10, opacity: 0}} animate={{y: 0, opacity: 1}} transition={{duration: 0.5}}>
+              <Typography variant="h4" sx={{mb: 2}}>Journal</Typography>
           </motion.div>
-        {/* // ) : (
+          {/* // ) : (
         //   <Typography variant="h4" sx={{ mb: 2 }}>Journal</Typography>
         // )} */}
           <AnimatePresence mode="wait">
               <motion.div
-                key={location.pathname}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-                transition={{ duration: 0.3 }}
+                  key={location.pathname}
+                  initial={{opacity: 0, y: 20}}
+                  animate={{opacity: 1, y: 0}}
+                  exit={{opacity: 0, y: -20}}
+                  transition={{duration: 0.3}}
               >
-                {outlet}
+                  {outlet}
               </motion.div>
-            </AnimatePresence>
-    
-        <Grid container rowSpacing={1} columns={3} sx={{ mt: 2 }}>
-          <Grid size={1}>
-            <Button onClick={handleBackClick}>Back</Button>
+          </AnimatePresence>
+
+          <Grid container rowSpacing={1} columns={3} sx={{mt: 2}}>
+              <Grid size={1}>
+                  <Button onClick={handleBackClick}>Back</Button>
+              </Grid>
+              <Grid size={1}></Grid>
+              <Grid size={1}>
+                  <Button onClick={handleMenuClick}>Menu</Button>
+              </Grid>
           </Grid>
-          <Grid size={1}></Grid>
-          <Grid size={1}>
-            <Button onClick={handleMenuClick}>Menu</Button>
-          </Grid>
-        </Grid>
       </div>
   )
 };

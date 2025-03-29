@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import { TextField } from "@mui/material";
-import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import {motion} from "framer-motion";
 
 const Highlights = ({ useJournal }) => {
     const navigate = useNavigate();
 
     const { rating, goalReview, goal, highlight, setHighlight, reset } = useJournal();
     const [text, setText] = useState("");
+    const MotionButton = motion(Button);
 
 
     async function submitJournal(value) {
@@ -41,17 +42,33 @@ const Highlights = ({ useJournal }) => {
                 type="text"
                 value={text}
                 onChange={(e) => setText(e.target.value)}
-                label="Your Highlights!"
+                label="Your Goal!"
+                variant="standard"
                 style={{
-                    fontSize: "14px",
-                    // padding: "8px",
                     width: "250px",
                     marginTop: "10px",
                 }}
-                variant="standard"
+                InputProps={{
+                    style: {
+                        color: "white",
+                    },
+                }}
+                InputLabelProps={{
+                    style: {
+                        color: "white",
+                    },
+                }}
+                sx={{
+                    '& .MuiInput-underline:before': {
+                        borderBottomColor: 'white',
+                    },
+                    '& .MuiInput-underline:hover:not(.Mui-disabled):before': {
+                        borderBottomColor: 'white',
+                    },
+                }}
             />
             <div style={{ marginTop: "20px" }}>
-                <button onClick={() => submitJournal(text)} style={{ marginRight: "10px" }}>Confirm</button>
+                <button onClick={submitJournal} style={{ marginRight: "10px" }}>Confirm</button>
             </div>
         </div>
     );

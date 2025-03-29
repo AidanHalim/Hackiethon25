@@ -8,8 +8,8 @@ const Menu = () => {
 
   return (
     <>
-        <h1>hello</h1>
-        <Link to="journal/star-rating">Go to Test</Link>
+        <h1 className="text-white">hello</h1>
+        <Link to="journal/star-rating" className="text-white">Go to Test</Link>
     </>
   );
 };

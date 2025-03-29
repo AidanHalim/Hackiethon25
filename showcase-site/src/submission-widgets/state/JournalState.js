@@ -2,8 +2,8 @@ export const createJournalState = () => {
     let state = {
       rating: null,
       goalReview: null,
-      currGoal: null,
-      highlight: null,
+      currGoal: "",
+      highlight: "",
     };
   
     return {
@@ -39,8 +39,8 @@ export const createJournalState = () => {
         state = {
           rating: null,
           goalReview: null,
-          currGoal: null,
-          highlight: null,
+          currGoal: "",
+          highlight: "",
         };
       },
     };

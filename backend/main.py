@@ -12,21 +12,23 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
-# Create the CSV file if it doesn't exist and write headers
+# Define the CSV file path
 csv_file = "UserLog.csv"
 with open(csv_file, mode="a", newline="") as file:
     writer = csv.writer(file)
     file.seek(0)
 
-@app.post("/StoreRating")
+@app.post("/journal/submit")
 async def submit_response(data: dict):
     rating = data.get("rating")
+    goalReview = data.get("goalReview")
+    currGoal = data.get("currGoal")
+    highlight = data.get("highlight")
     timestamp = datetime.now().isoformat()
 
     with open(csv_file, mode="a", newline="") as file:
         writer = csv.writer(file)
-        writer.writerow([timestamp, rating])
+        writer.writerow([timestamp, rating, goalReview, currGoal, highlight])
 
     return {"status": "saved"}
 

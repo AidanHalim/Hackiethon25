@@ -1,46 +1,51 @@
-import { createBrowserRouter, createMemoryRouter } from 'react-router-dom';  // Correct import
 import Layout from '../Base/Layout';
 import Menu from '../pages/Menu';
-import Test from '../pages/Test';
-import GoalReview from "../pages/GoalReview.jsx";
-import GoalCreate from "../pages/GoalCreate.jsx";
-import Highlights from "../pages/Highlights.jsx";
-import StarRatingPage from '../pages/StarRating.jsx';
-import JournalLayout from '../base/JournalLayout.jsx';
+import GoalReview from "../pages/GoalReview";
+import GoalCreate from "../pages/GoalCreate";
+import Highlights from "../pages/Highlights";
+import StarRatingPage from '../pages/StarRating';
+import JournalLayout from '../base/JournalLayout';
+import React from 'react';
 
-const routes = [
-  {
-    path: "/",
-    element: <Layout />,
-    children: [
-      {
-        index: true,
-        element: <Menu />,
-      },
-      {
-        path: "journal",
-        element: <JournalLayout />,
-        children: [
+export const createRoutes = (journalState, JournalContext, useJournal) => {
+  const FullJournalLayout = () => (
+    <JournalContext.Provider value={journalState}>
+      <JournalLayout useJournal={useJournal} />
+    </JournalContext.Provider>
+  );
+
+  return [
+    {
+      path: "/",
+      element: <Layout />,
+      children: [
+        {
+          index: true,
+          element: <Menu />,
+        },
+        {
+          path: "journal",
+          element: <FullJournalLayout />,
+          children: [
             {
-                path: "star-rating",
-                element: <StarRatingPage />,
+              path: "star-rating",
+              element: <StarRatingPage useJournal={useJournal} />,
             },
             {
-                path: "goal-review",
-                element: <GoalReview />,
+              path: "goal-review",
+              element: <GoalReview useJournal={useJournal} />,
             },
             {
-                path: "goal-create",
-                element: <GoalCreate />
+              path: "goal-create",
+              element: <GoalCreate useJournal={useJournal} />
             },
             {
-                path: "highlights",
-                element: <Highlights />
+              path: "highlights",
+              element: <Highlights useJournal={useJournal} />
             }
-        ]
-      },
-    ]
-  },
-];
-
-export const createRouter = () => createMemoryRouter(routes, { initialEntries: ['/'] });
+          ]
+        },
+      ]
+    },
+  ];
+};

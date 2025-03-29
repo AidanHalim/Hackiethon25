@@ -6,7 +6,8 @@ import { Typography } from "@mui/material";
 import { motion, AnimatePresence } from 'framer-motion';
 import React from "react";
 
-const JournalLayout = () => {
+
+const JournalLayout = ({ journalState }) => {
   const navigate = useNavigate();
   const location = useLocation();
   const outlet = useOutlet();
@@ -30,9 +31,6 @@ const JournalLayout = () => {
     navigate('/');
   }
 
-  // useEffect(() => {
-  //   setIsInitialLoad(false);
-  // }, []);
   
   return (
       <div>
@@ -43,7 +41,6 @@ const JournalLayout = () => {
         {/* // ) : (
         //   <Typography variant="h4" sx={{ mb: 2 }}>Journal</Typography>
         // )} */}
-    
           <AnimatePresence mode="wait">
               <motion.div
                 key={location.pathname}

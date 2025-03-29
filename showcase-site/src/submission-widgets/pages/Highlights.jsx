@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { TextField } from "@mui/material";
 
-const Highlights = () => {
+const Highlights = ({ useJournal }) => {
     const [goal, setGoal] = useState("");
 
     return (

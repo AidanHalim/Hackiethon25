@@ -1,23 +1,26 @@
 import React, { useState } from "react";
-import {useNavigate} from "react-router-dom";
+import { useNavigate, useOutletContext } from "react-router-dom";
 import { TextField } from "@mui/material";
 
-const GoalCreate = () => {
-    const [goal, setGoal] = useState("");
+const GoalCreate = ({ useJournal }) => {
+
+    const { setGoal } = useJournal();
+
+    const [text, setText] = useState("");
     const navigate = useNavigate();
 
-    const handleClick = () => {
-        console.log(goal)
+    const handleClick = (value) => {
+        setGoal(value);
         navigate('/journal/highlights');
     };
 
     return (
         <div style={{ textAlign: "center", }}>
-            <h1>Insert goal for tomorrow</h1>
+            <h1>Insert text for tomorrow</h1>
             <TextField
                 type="text"
-                value={goal}
-                onChange={(e) => setGoal(e.target.value)}
+                value={text}
+                onChange={(e) => setText(e.target.value)}
                 label="Your Goal!"
                 style={{
                     fontSize: "14px",
@@ -28,7 +31,7 @@ const GoalCreate = () => {
                 variant="standard"
             />
             <div style={{ marginTop: "20px" }}>
-                <button style={{ marginRight: "10px" }}  onClick={handleClick}>Confirm</button>
+                <button style={{ marginRight: "10px" }}  onClick={() => handleClick(text)}>Confirm</button>
             </div>
         </div>
     );

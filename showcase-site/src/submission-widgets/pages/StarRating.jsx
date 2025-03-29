@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import StarIcon from '@mui/icons-material/Star';
 import { Typography, Box, Rating } from '@mui/material';
 import { motion } from 'framer-motion';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useOutletContext } from 'react-router-dom';
+// import axios from 'axios';
 
 const labels = {
     0.5: 'Horrible',
@@ -26,16 +27,30 @@ const pageVariant = {
     animate: { y: 0, opacity: 1 },
 };
 
-  
+const StarRatingPage = ({ useJournal }) => {
 
-const StarRatingPage = () => {
+    const { rating, setRating } = useJournal();
+
+
     const navigate = useNavigate();
 
-    const storeValue = (value) => {
+    const storeValue = async (storedValue) => {
+        // try {
+        
+        //     axios.post('http://localhost:8000/StoreRating', {
+        //         rating: storedValue
+        //     })
+
+        //     navigate('/journal/goal-review');
+        //     }
+        //     catch (error) {
+        //         console.error('Error storing value:', error);
+        // }
+
+        setRating(storedValue);
         navigate('/journal/goal-review');
     }
 
-  const [value, setValue] = React.useState(2);
   const [hover, setHover] = React.useState(-1);
 
   return (
@@ -43,7 +58,7 @@ const StarRatingPage = () => {
         <Typography sx={{ mb: 1.5 }}>How Was Your Day?</Typography>
         <Box sx={{ width: "250px", display: 'flex', alignItems: 'center', flexDirection: 'column' }}>
             <Rating
-                value={value}
+                value={rating}
                 precision={0.5}
                 getLabelText={getLabelText}
                 onChange={(event, newValue) => { storeValue(newValue) }}
@@ -51,12 +66,12 @@ const StarRatingPage = () => {
                 emptyIcon={<StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />}
             />
 
-            {value !== null && (
+            {rating !== null && (
                 <Box sx={{ ml: 2 }}>
                     <Typography sx={{ whiteSpace: 'pre-line' }}>
-                        {labels[hover !== -1 ? hover : value]}
+                        {labels[hover !== -1 ? hover : rating]}
                     </Typography>
-            </Box>
+                </Box>
             )}
         </Box>
     </motion.div>

@@ -1,13 +1,18 @@
-import React, { useState } from 'react';
-import { RouterProvider } from 'react-router';
-import { createRouter } from './routes/routes.jsx';
+import React from 'react';
+import { RouterProvider, createMemoryRouter } from 'react-router-dom';
+import { createJournalState } from './state/JournalState';
+import { createJournalContext } from './context/CreateJournalContext';
+import { createRoutes } from './routes/routes';
 
 const MyWidget = () => {
-  const router = createRouter();
+  const journalState = createJournalState();
+  const { JournalContext, useJournal } = createJournalContext(); 
 
-  return (
-    <RouterProvider router={router} />
-  );
+  const routes = createRoutes(journalState, JournalContext, useJournal);
+
+  const router = createMemoryRouter(routes, { initialEntries: ['/'] });
+
+  return <RouterProvider router={router} />;
 };
 
 export default MyWidget;

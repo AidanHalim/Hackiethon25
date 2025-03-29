@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate, useOutletContext } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import {Button, TextField} from "@mui/material";
 import { motion } from "framer-motion";
 
@@ -51,7 +51,7 @@ const GoalCreate = ({ useJournal }) => {
             <div style={{ marginTop: "20px" }}>
                 <MotionButton
                     variant="outlined"
-                    onClick={() => handleClick(true)}
+                    onClick={() => handleClick(text)}
                     whileTap={{ scale: 0.95 }}
                     whileHover={{
                         scale: [1, 1.05],

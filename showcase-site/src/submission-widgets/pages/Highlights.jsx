@@ -71,7 +71,7 @@ const Highlights = ({ useJournal }) => {
             <div style={{ marginTop: "20px" }}>
                 <MotionButton
                     variant="outlined"
-                    onClick={() => submitJournal(true)}
+                    onClick={() => submitJournal(text)}
                     whileTap={{scale: 0.95}}
                     whileHover={{
                         scale: [1, 1.05],

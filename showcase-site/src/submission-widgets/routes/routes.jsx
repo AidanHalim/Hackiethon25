@@ -1,4 +1,4 @@
-import Layout from '../Base/Layout';
+import Layout from '../base/Layout';
 import Menu from '../pages/Menu';
 import GoalReview from "../pages/GoalReview";
 import GoalCreate from "../pages/GoalCreate";

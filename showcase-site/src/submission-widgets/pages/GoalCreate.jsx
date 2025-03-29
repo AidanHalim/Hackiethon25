@@ -4,7 +4,6 @@ import { Button, TextField } from "@mui/material";
 import { motion } from "framer-motion";
 
 const GoalCreate = ({ useJournal }) => {
-
     const { setGoal } = useJournal();
 
     const [text, setText] = useState("");

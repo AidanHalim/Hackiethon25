@@ -34,14 +34,14 @@ async def submit_response(data: dict):
 @app.get("/journal/previous-goal")
 async def get_prev_goal():
     try:
-        df = pd.read_csv("UserLog.csv", skiprows=1, names=["timestamp", "rating", "goalReview", "currGoal", "highlight"])
+        data = pd.read_csv("UserLog.csv", skiprows=1, names=["timestamp", "rating", "goalReview", "currGoal", "highlight"])
 
-        df['timestamp'] = pd.to_datetime(df['timestamp'], format="%Y-%m-%d")
+        data['timestamp'] = pd.to_datetime(data['timestamp'], format="%Y-%m-%d")
 
         # Get yesterday's date
         yesterday = datetime.now().date() - timedelta(days=1)
 
-        prev = df[df['timestamp'] == pd.Timestamp(yesterday)]
+        prev = data[data['timestamp'] == pd.Timestamp(yesterday)]
 
         if not prev.empty:
             return {"currGoal": prev.iloc[-1]['currGoal']}
@@ -50,7 +50,28 @@ async def get_prev_goal():
 
     except Exception as e:
         return {"error": str(e)}
+
+@app.get("/journal/streak")
+def calculate_streak():
+    today = datetime.now().date()
+    streak = 0
+    currentDay = today
     
+    data = pd.read_csv(csv_file, skiprows=1, names=["timestamp", "rating", "goalReview", "currGoal", "highlight"])
+    
+    data['timestamp'] = pd.to_datetime(data['timestamp'], format="%Y-%m-%d").dt.date
+    dates = data["timestamp"].tolist()[::-1]
+    
+    print(dates)
+
+    for date in dates:
+        if date == currentDay:
+            streak += 1
+            currentDay -= timedelta(days=1)
+        else:
+            break
+
+    return {"streak" : streak}
 
 if __name__ == "__main__":
     import uvicorn

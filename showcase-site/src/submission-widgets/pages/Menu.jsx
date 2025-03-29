@@ -6,8 +6,13 @@ import ThreeLivesImg from '../assets/plant-3-lives.png';
 import TwoLivesImg from '../assets/plant-2-lives.png';
 import OneLifeImg from '../assets/plant-1-lives.png';
 import NoLivesImg from '../assets/plant-0-lives.png';
+import { motion } from 'framer-motion';
 
 const Menu = () => {
+
+  const MotionButton = motion(Button)
+  const MotionTypography = motion(Typography)
+
   const navigate = useNavigate();
   const [streak, setStreak] = useState(null);
   const [lives, setLives] = useState(0);
@@ -43,17 +48,22 @@ const Menu = () => {
     }
     checkCompleted();
   }, [])
+  
+  const pageVariant = {
+    initial: { y: 30, opacity: 0 },
+    animate: { y: 0, opacity: 1 }
+  }
 
   return (
     <>
-      <Typography className="text-white">
-        {streak !== null ? `Current Streak: ${streak}` : "Loading..."}
-      </Typography>
+        <MotionTypography variants={pageVariant} initial="initial" animate="animate" transition={{ type: 'spring', delay: 0.3 }} className="text-white">
+          {streak !== null ? `Current Streak: ${streak}` : "Loading..."}
+        </MotionTypography>
       
-      <div style={{ position: 'relative', width: '100%', height: '100%' }}>
-        <img src={lives === 3 ? ThreeLivesImg : lives === 2 ? TwoLivesImg : lives === 1 ? OneLifeImg : NoLivesImg} alt="streak" style={{ width: '88%', height: '87%', display: 'block' }}/>
+        <div style={{ position: 'relative', width: '100%', height: '100%' }}>
+          <motion.img variants={pageVariant} initial="initial" animate="animate" transition={{ type: 'spring', delay: 0.4 }} src={lives === 3 ? ThreeLivesImg : lives === 2 ? TwoLivesImg : lives === 1 ? OneLifeImg : NoLivesImg} alt="streak" style={{ width: '88%', height: '87%', display: 'block' }}/>
         
-        <Button disabled={isCompleted} onClick={() => navigate('/journal/star-rating')} variant="contained" style={{ fontSize: '12px', position: 'absolute', top: '88%', left: '50%', transform: 'translate(-50%, -50%)', zIndex: 1, width: "100%"}}
+        <MotionButton disabled={isCompleted} onClick={() => navigate('/journal/star-rating')} variant="contained" style={{ fontSize: '12px', position: 'absolute', top: '88%', left: '50%', transform: 'translate(-50%, -50%)', zIndex: 1, width: "100%"}}
           sx={{
             backgroundColor: '#1976d2',
             color: 'white',
@@ -63,9 +73,11 @@ const Menu = () => {
               color: 'white',
               opacity: 1,
             },
-          }}>
+          }}
+          initial={{y: -10, x: '-50%', opacity: 0 }} animate={{y: -20, x: '-50%', opacity: 1 }} transition={{ type: 'spring', delay: 0.5 }}
+          >
           {isCompleted ? 'Log Completed For The Day!' : 'Log Journal'}
-        </Button>
+        </MotionButton>
       </div>
     </>
   );

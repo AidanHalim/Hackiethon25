@@ -2,8 +2,7 @@ import React, { useState } from 'react';
 import StarIcon from '@mui/icons-material/Star';
 import { Typography, Box, Rating, Stack } from '@mui/material';
 import { motion } from 'framer-motion';
-import { useNavigate, useOutletContext } from 'react-router-dom';
-// import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const labels = {
     0.5: 'Horrible',
@@ -31,22 +30,9 @@ const StarRatingPage = ({ useJournal }) => {
 
     const { rating, setRating } = useJournal();
 
-
     const navigate = useNavigate();
 
     const storeValue = async (storedValue) => {
-        // try {
-        
-        //     axios.post('http://localhost:8000/StoreRating', {
-        //         rating: storedValue
-        //     })
-
-        //     navigate('/journal/goal-review');
-        //     }
-        //     catch (error) {
-        //         console.error('Error storing value:', error);
-        // }
-
         setRating(storedValue);
         navigate('/journal/goal-review');
     }

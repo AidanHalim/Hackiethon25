@@ -1,24 +1,28 @@
 import React from 'react';
 import Lottie from 'lottie-react';
-import animationData from '../../assets/success.json';
+import successCheck from '../../assets/success.json';
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-const JournalSuccess = () => {
-    useEffect(() => {
-        const timeout = setTimeout(() => {
-          navigate('/');
-        }, 3000);
+const Success = () => {
+  const navigate = useNavigate();
 
-        return () => clearTimeout(timeout); // cleanup
-      }, [navigate]);
+  useEffect(() => {
+      const timeout = setTimeout(() => {
+        navigate('/');
+      }, 2500);
+
+      return () => clearTimeout(timeout); // cleanup
+    }, [navigate]);
 
     return (
         <Lottie
-            animationData={animationData}
+            animationData={successCheck}
             loop={false}
             autoplay={true}
-            style={{ width: 300, height: 300 }}
+            style={{ width: 100, height: 100 }}
         />
     );
 };
 
-export default JournalSuccess;
+export default Success;

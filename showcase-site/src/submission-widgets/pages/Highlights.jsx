@@ -43,7 +43,7 @@ const Highlights = ({ useJournal }) => {
                 type="text"
                 value={text}
                 onChange={(e) => setText(e.target.value)}
-                label="Your Goal!"
+                label="Your Highlight!"
                 variant="standard"
                 style={{
                     width: "250px",

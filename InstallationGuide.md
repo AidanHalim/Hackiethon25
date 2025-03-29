@@ -23,7 +23,8 @@ pip install pandas
 
 ### Running The Code
 
-####To execute frontend
+### To execute frontend
 enter `npm run dev` in the terminal under `/showcase-site/src submission-widgets/backend`
 
-To execute backend, run `main.py`
+### To execute backend
+run `main.py`

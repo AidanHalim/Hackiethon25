@@ -11,6 +11,7 @@ const Menu = () => {
   const navigate = useNavigate();
   const [streak, setStreak] = useState(null);
   const [lives, setLives] = useState(0);
+  const [isCompleted, setIsCompleted] = useState(false);
   
   useEffect(() => {
     async function currentStreak() {
@@ -29,6 +30,19 @@ const Menu = () => {
     }
     currentStreak();
   }, []);
+
+  useEffect(() => {
+    async function checkCompleted() {
+      try {
+          const completedStatus = await axios.get('http://localhost:8000/journal/completed')
+          console.log(completedStatus)
+          setIsCompleted(completedStatus.data.completed)
+      } catch (error) {
+        console.log('failed to grab completed status', error)
+      }
+    }
+    checkCompleted();
+  }, [])
 
 
   // useEffect(() => {
@@ -58,8 +72,18 @@ const Menu = () => {
       <div style={{ position: 'relative', width: '100%', height: '100%' }}>
         <img src={lives === 3 ? ThreeLivesImg : lives === 2 ? TwoLivesImg : lives === 1 ? OneLifeImg : NoLivesImg} alt="streak" style={{ width: '88%', height: '87%', display: 'block' }}/>
         
-        <Button onClick={() => navigate('/journal/star-rating')} variant="contained" style={{ fontSize: '12px', position: 'absolute', top: '88%', left: '50%', transform: 'translate(-50%, -50%)', zIndex: 1, width: "100%"}}>
-          Log Journal
+        <Button disabled={isCompleted} onClick={() => navigate('/journal/star-rating')} variant="contained" style={{ fontSize: '12px', position: 'absolute', top: '88%', left: '50%', transform: 'translate(-50%, -50%)', zIndex: 1, width: "100%"}}
+          sx={{
+            backgroundColor: '#1976d2',
+            color: 'white',
+            opacity: 1,
+            '&.Mui-disabled': {
+              backgroundColor: '#a0a3a1',
+              color: 'white',
+              opacity: 1,
+            },
+          }}>
+          {isCompleted ? 'Log Completed For The Day!' : 'Log Journal'}
         </Button>
       </div>
     </>

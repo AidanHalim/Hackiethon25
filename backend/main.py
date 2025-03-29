@@ -67,7 +67,6 @@ def calculate_streak():
     currentLives = 3
 
     for date in dates:
-        print("date", date)
         if date == currentDay:
             streak += 1
             lives = 3
@@ -86,9 +85,7 @@ def calculate_streak():
                         break
             else:
                 while lives > 0:
-                    print(date)
                     if currentDay != date:
-                        print(currentDay, date)
                         lives -= 1
                         currentDay -= timedelta(days=1)
                     else:
@@ -102,6 +99,23 @@ def calculate_streak():
 
     return {"streak" : streak, "lives" : currentLives}
 
+@app.get("/journal/completed")
+def get_completed():
+    try:
+        data = pd.read_csv(csv_file, skiprows=1, names=["timestamp", "rating", "goalReview", "currGoal", "highlight"])
+        data['timestamp'] = pd.to_datetime(data['timestamp'], format="%Y-%m-%d").dt.date
+        status = data["timestamp"].tolist()[-1]
+        
+        completed = False
+        if (status == datetime.now().date()):
+            completed = True
+            
+        print(completed)
+        return { "completed" : completed }
+        
+    except Exception as e:
+        return {"error": str(e)}
+      
 
 if __name__ == "__main__":
     uvicorn.run("main:app", host="localhost", port=8000, reload=True)

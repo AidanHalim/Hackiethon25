@@ -21,6 +21,13 @@ function getLabelText(value) {
     return `${value} Star${value !== 1 ? 's' : ''}, ${labels[value]}`;
 }
 
+const pageVariant = {
+    initial: { y: '10vh', opacity: 0 },
+    animate: { y: 0, opacity: 1 },
+};
+
+  
+
 const StarRatingPage = () => {
     const navigate = useNavigate();
 
@@ -32,7 +39,7 @@ const StarRatingPage = () => {
   const [hover, setHover] = React.useState(-1);
 
   return (
-    <motion.div initial={{ y: '20vh', opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ type: 'spring', delay: 0.5 }}>
+    <motion.div variants={pageVariant} initial="initial" animate="animate" transition={{ type: 'spring', delay: 0.5 }}>
         <Typography sx={{ mb: 1.5 }}>How Was Your Day?</Typography>
         <Box sx={{ width: 200, display: 'flex', alignItems: 'center', flexDirection: 'column' }}>
             <Rating
@@ -40,12 +47,8 @@ const StarRatingPage = () => {
                 value={value}
                 precision={0.5}
                 getLabelText={getLabelText}
-                onChange={(event, newValue) => {
-                    storeValue(newValue);
-                }}
-                onChangeActive={(event, newHover) => {
-                    setHover(newHover);
-                }}
+                onChange={(event, newValue) => { storeValue(newValue) }}
+                onChangeActive={(event, newHover) => { setHover(newHover) }}
                 emptyIcon={<StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />}
             />
 

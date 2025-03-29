@@ -63,7 +63,15 @@ const StarRatingPage = ({ useJournal }) => {
                 getLabelText={getLabelText}
                 onChange={(event, newValue) => { storeValue(newValue) }}
                 onChangeActive={(event, newHover) => { setHover(newHover) }}
-                emptyIcon={<StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />}
+                emptyIcon={
+                    <StarIcon
+                        style={{
+                            opacity: 0.55,
+                            color: 'black',
+                        }}
+                        fontSize="inherit"
+                    />
+                }
             />
 
             {rating !== null && (

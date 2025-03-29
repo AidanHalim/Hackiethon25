@@ -14,9 +14,7 @@ const JournalLayout = () => {
 
   const handleBackClick = () => {
     if (location.pathname === '/journal/star-rating') {
-      navigate(-1);
-    } else if (location.pathname === '/journal/star-rating') {
-      navigate('star-rating');
+      navigate("/");
     } else if (location.pathname === '/journal/goal-review') {
       navigate('star-rating');
     } else if (location.pathname === '/journal/goal-create') {
@@ -33,19 +31,19 @@ const JournalLayout = () => {
     navigate('/');
   }
 
-  useEffect(() => {
-    setIsInitialLoad(false);
-  }, []);
+  // useEffect(() => {
+  //   setIsInitialLoad(false);
+  // }, []);
   
   return (
     <div>
-      {isInitialLoad ? (
+      {/* {isInitialLoad ? ( */}
         <motion.div initial={{ y: 10, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.5 }}>
           <Typography variant="h4" sx={{ mb: 2 }}>Journal</Typography>
         </motion.div>
-      ) : (
-        <Typography variant="h4" sx={{ mb: 2 }}>Journal</Typography>
-      )}
+      {/* // ) : (
+      //   <Typography variant="h4" sx={{ mb: 2 }}>Journal</Typography>
+      // )} */}
   
       <Outlet />
   

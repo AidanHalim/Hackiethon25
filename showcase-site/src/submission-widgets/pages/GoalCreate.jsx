@@ -6,7 +6,7 @@ const GoalCreate = () => {
     const navigate = useNavigate();
 
     const handleClick = () => {
-        navigate("/highlights");
+        navigate('/journal/highlights');
     };
 
     return (

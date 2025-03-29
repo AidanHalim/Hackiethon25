@@ -53,25 +53,31 @@ async def get_prev_goal():
 
 @app.get("/journal/streak")
 def calculate_streak():
-    today = datetime.now().date()
-    streak = 0
-    currentDay = today
+    currentDay = datetime.now().date()
     
     data = pd.read_csv(csv_file, skiprows=1, names=["timestamp", "rating", "goalReview", "currGoal", "highlight"])
     
     data['timestamp'] = pd.to_datetime(data['timestamp'], format="%Y-%m-%d").dt.date
     dates = data["timestamp"].tolist()[::-1]
     
-    print(dates)
+    streak = 0
+    lives = 3
 
     for date in dates:
         if date == currentDay:
             streak += 1
             currentDay -= timedelta(days=1)
+        elif streak == 0 and lives != 0 and date != currentDay:
+            while lives != 0:
+                if currentDay != date:
+                    lives -= 1
+                currentDay -= timedelta(days=1)
+                break
+            break
         else:
             break
 
-    return {"streak" : streak}
+    return {"streak" : streak, "lives" : lives}
 
 if __name__ == "__main__":
     import uvicorn

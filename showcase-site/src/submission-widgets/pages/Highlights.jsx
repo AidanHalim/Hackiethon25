@@ -22,7 +22,7 @@ const Highlights = ({ useJournal }) => {
             }).then((response) => {
                 console.log("Journal submitted successfully!", response.data);
                 reset();
-                // navigate("success");
+                navigate("/success");
             });
             
         } catch (error) {

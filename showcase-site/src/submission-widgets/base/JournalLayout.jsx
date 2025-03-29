@@ -6,7 +6,6 @@ import { Typography } from "@mui/material";
 import { motion, AnimatePresence } from 'framer-motion';
 import React from "react";
 
-
 const JournalLayout = ({ journalState }) => {
   const navigate = useNavigate();
   const location = useLocation();
@@ -35,9 +34,6 @@ const JournalLayout = ({ journalState }) => {
   return (
       <div style={{color: "white"}}>
           {/* {isInitialLoad ? ( */}
-          <motion.div initial={{y: 10, opacity: 0}} animate={{y: 0, opacity: 1}} transition={{duration: 0.5}}>
-              <Typography variant="h4" sx={{mb: 2}}>Journal</Typography>
-          </motion.div>
           {/* // ) : (
         //   <Typography variant="h4" sx={{ mb: 2 }}>Journal</Typography>
         // )} */}

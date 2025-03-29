@@ -3,6 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 import csv
 from datetime import datetime, timedelta
 import pandas as pd
+import uvicorn
 
 app = FastAPI()
 
@@ -103,5 +104,4 @@ def calculate_streak():
 
 
 if __name__ == "__main__":
-    import uvicorn
     uvicorn.run("main:app", host="localhost", port=8000, reload=True)

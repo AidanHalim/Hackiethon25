@@ -2,7 +2,7 @@ import { Outlet } from "react-router-dom";
 import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
 import { useNavigate, useLocation } from 'react-router-dom';
-import {motion} from "framer-motion";
+import { motion } from "framer-motion";
 import React from "react";
 
 const Layout = () => {

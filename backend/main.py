@@ -53,31 +53,74 @@ async def get_prev_goal():
 
 @app.get("/journal/streak")
 def calculate_streak():
-    currentDay = datetime.now().date()
     
     data = pd.read_csv(csv_file, skiprows=1, names=["timestamp", "rating", "goalReview", "currGoal", "highlight"])
     
     data['timestamp'] = pd.to_datetime(data['timestamp'], format="%Y-%m-%d").dt.date
     dates = data["timestamp"].tolist()[::-1]
     
+    currentDay = datetime.now().date()
+    today = datetime.now().date()
     streak = 0
     lives = 3
+    currentLives = 3
 
     for date in dates:
+        print("date", date)
         if date == currentDay:
             streak += 1
+            lives = 3
             currentDay -= timedelta(days=1)
-        elif streak == 0 and lives != 0 and date != currentDay:
-            while lives != 0:
-                if currentDay != date:
-                    lives -= 1
-                currentDay -= timedelta(days=1)
-                break
-            break
         else:
+            if(currentDay == today):
+                while lives > 0:
+                    if currentDay != date:
+                        lives -= 1
+                        currentLives -= 1
+                        currentDay -= timedelta(days=1)
+                    else:
+                        lives = 3
+                        streak += 1
+                        currentDay -= timedelta(days=1)
+                        break
+            else:
+                while lives > 0:
+                    print(date)
+                    if currentDay != date:
+                        print(currentDay, date)
+                        lives -= 1
+                        currentDay -= timedelta(days=1)
+                    else:
+                        lives = 3
+                        streak += 1
+                        currentDay -= timedelta(days=1)
+                        break
+        
+        if lives == 0:
             break
 
-    return {"streak" : streak, "lives" : lives}
+    return {"streak" : streak, "lives" : currentLives}
+
+@app.get("/journal/lives")
+def get_lives():
+    try:
+        data = pd.read_csv(csv_file, skiprows=1, names=["timestamp", "rating", "goalReview", "currGoal", "highlight"])
+        data['timestamp'] = pd.to_datetime(data['timestamp'], format="%Y-%m-%d")
+        dates = data["timestamp"].tolist()[::-1]
+        
+        currentDay = datetime.now().date()
+        lives = 3
+        
+        for date in dates[0:]:
+            if (date == datetime.now().date()) or (lives == 0):
+                break
+            else:
+                lives -= 1
+                currentDay -= timedelta(days=1)
+        
+        return {"lives": lives}
+    except Exception as e:
+        return {"error": str(e)}
 
 if __name__ == "__main__":
     import uvicorn

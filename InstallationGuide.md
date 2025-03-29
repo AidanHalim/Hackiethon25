@@ -1,6 +1,6 @@
 ### Installation Guide
 
-Under `/showcase-site/src/submission-widgets`
+Under `/showcase-site`
 
 #### Run
 
@@ -29,7 +29,13 @@ pip install pandas
 ### Running The Code
 
 ### To execute frontend
-enter `npm run dev` in the terminal under `/showcase-site/src submission-widgets/backend`
+enter `npm run dev` in the terminal under `/showcase-site`
 
 ### To execute backend
 run `main.py`
+
+
+## NOTE
+If testing is needed, make sure that the csv file `/showcase-site/src/submission-widgets/backend/UserLog.csv` isn't filled with today's date
+
+**Enjoy!**

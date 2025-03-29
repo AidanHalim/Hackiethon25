@@ -12,7 +12,7 @@ const MyWidget = () => {
 
   const router = createMemoryRouter(routes, { initialEntries: ['/'] });
 
-  return <RouterProvider router={router} />;
+  return <div><RouterProvider router={router} /></div>;
 };
 
 export default MyWidget;

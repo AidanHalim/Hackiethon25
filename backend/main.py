@@ -120,7 +120,7 @@ def get_history():
     with open(csv_file, newline="") as file:
         data = pd.read_csv(csv_file, skiprows=1, names=["timestamp", "rating", "goalReview", "currGoal", "highlight"])
 
-        recent = data.tail(7).iloc[::-1]
+        recent = data.tail(5).iloc[::-1]
         recent = recent.fillna("").astype(str)
         
     return recent.to_dict(orient="records")

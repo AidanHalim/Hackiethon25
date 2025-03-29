@@ -16,7 +16,7 @@ export default function History() {
 
   return (
     <>
-      <Typography variant="h5" mb={2}>Journal History</Typography>
+      <Typography mb={2}>Journal History (Last 5 Records)</Typography>
       {Array.isArray(history) && history.map((entry, index) => (
         <Grid container
         columns={4}
@@ -27,20 +27,20 @@ export default function History() {
           paddingY: 1,
         }}>
             <Grid item size={1}>
-                <Typography fontSize="9px" key={index} noWrap sx={{ overflow: "hidden", textOverflow: "ellipsis", display:"block" }}>{entry.timestamp}</Typography>
+                <Typography fontSize="8.5px" key={index} noWrap sx={{ overflow: "hidden", textOverflow: "ellipsis", display:"block" }}>{entry.timestamp}</Typography>
             </Grid>
             <Grid item size={1}>
-                <Typography fontSize="9px" key={index} noWrap sx={{ overflow: "hidden", textOverflow: "ellipsis", display:"block" }}>
+                <Typography fontSize="8.5px" key={index} noWrap sx={{ overflow: "hidden", textOverflow: "ellipsis", display:"block" }}>
                     ⭐ {entry.rating}
                 </Typography>
             </Grid>
             <Grid item size={1}>
-                <Typography fontSize="9px" key={index} noWrap sx={{ overflow: "hidden", textOverflow: "ellipsis", display:"block" }}>
+                <Typography fontSize="8.5px" key={index} noWrap sx={{ overflow: "hidden", textOverflow: "ellipsis", display:"block" }}>
                     {entry.currGoal}
                 </Typography>
             </Grid>
             <Grid item size={1}>
-                <Typography fontSize="9px" key={index} noWrap sx={{ overflow: "hidden", textOverflow: "ellipsis", display:"block" }}>
+                <Typography fontSize="8.5px" key={index} noWrap sx={{ overflow: "hidden", textOverflow: "ellipsis", display:"block" }}>
                     {entry.highlight}
                 </Typography>
             </Grid>

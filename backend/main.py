@@ -101,26 +101,6 @@ def calculate_streak():
 
     return {"streak" : streak, "lives" : currentLives}
 
-@app.get("/journal/lives")
-def get_lives():
-    try:
-        data = pd.read_csv(csv_file, skiprows=1, names=["timestamp", "rating", "goalReview", "currGoal", "highlight"])
-        data['timestamp'] = pd.to_datetime(data['timestamp'], format="%Y-%m-%d")
-        dates = data["timestamp"].tolist()[::-1]
-        
-        currentDay = datetime.now().date()
-        lives = 3
-        
-        for date in dates[0:]:
-            if (date == datetime.now().date()) or (lives == 0):
-                break
-            else:
-                lives -= 1
-                currentDay -= timedelta(days=1)
-        
-        return {"lives": lives}
-    except Exception as e:
-        return {"error": str(e)}
 
 if __name__ == "__main__":
     import uvicorn

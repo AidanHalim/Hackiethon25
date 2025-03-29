@@ -9,14 +9,12 @@ const Layout = () => {
 
   return (
       <div className="w-[300px] h-[370px] p-6 mx-auto bg-gray-800 rounded-xl shadow-lg flex flex-col justify-start">
-          {/* Header (stays up top) */}
           <div className="text-center mx-auto mb-4">
               <motion.div initial={{y: 10, opacity: 0}} animate={{y: 0, opacity: 1}} transition={{duration: 0.5}}>
                   <img src="src/assets/momentum.png" alt="Momentum Logo" style={{height: '70px'}}/>
               </motion.div>
           </div>
 
-          {/* Dynamic content area */}
           <div className="flex-1 flex flex-col items-center justify-center">
               <Outlet/>
           </div>

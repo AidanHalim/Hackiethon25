@@ -12,14 +12,12 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-# Define the CSV file path
+
 csv_file = "UserLog.csv"
-with open(csv_file, mode="a", newline="") as file:
-    writer = csv.writer(file)
-    file.seek(0)
 
 @app.post("/journal/submit")
 async def submit_response(data: dict):
+    
     rating = data.get("rating")
     goalReview = data.get("goalReview")
     currGoal = data.get("currGoal")

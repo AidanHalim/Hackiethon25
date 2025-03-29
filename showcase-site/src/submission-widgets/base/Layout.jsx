@@ -6,7 +6,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 const Layout = () => {
 
   return (
-    <div className="p-6 max-w-sm mx-auto bg-gray-800 rounded-xl shadow-lg">
+    <div className="w-[300px] h-[300px] p-6 mx-auto bg-gray-800 rounded-xl shadow-lg flex flex-col justify-center items-center space-y-4">
       <div className="text-center space-y-4">
         <Outlet />
       </div>

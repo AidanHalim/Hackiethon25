@@ -4,10 +4,9 @@ import Grid from "@mui/material/Grid";
 import { useNavigate, useLocation } from 'react-router-dom';
 import { Typography } from "@mui/material";
 import { motion, AnimatePresence } from 'framer-motion';
-import React, { useEffect, useState } from "react";
+import React from "react";
 
 const JournalLayout = () => {
-  const [isInitialLoad, setIsInitialLoad] = useState(true);
   const navigate = useNavigate();
   const location = useLocation();
   const outlet = useOutlet();

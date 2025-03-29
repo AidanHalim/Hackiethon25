@@ -110,7 +110,6 @@ def get_completed():
         if (status == datetime.now().date()):
             completed = True
             
-        print(completed)
         return { "completed" : completed }
         
     except Exception as e:

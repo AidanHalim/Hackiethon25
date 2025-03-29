@@ -1,22 +1,26 @@
 import React, { useState } from "react";
 import { TextField } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const Highlights = ({ useJournal }) => {
+    const navigate = useNavigate();
 
-    const { rating, goalReview, currGoal, highlight, setHighlight, reset } = useJournal();
+    const { rating, goalReview, goal, highlight, setHighlight, reset } = useJournal();
     const [text, setText] = useState("");
 
-    async function submitJournal() {
+
+    async function submitJournal(value) {
         try {
             axios.post("http://localhost:8000/journal/submit", {
                 rating: rating,
                 goalReview: goalReview,
-                currGoal: currGoal,
-                highlight: highlight,
+                currGoal: goal,
+                highlight: value,
             }).then((response) => {
                 console.log("Journal submitted successfully!", response.data);
                 reset();
+                // navigate("success");
             });
             
         } catch (error) {
@@ -24,11 +28,10 @@ const Highlights = ({ useJournal }) => {
         }
     }
 
-
     async function handleKeyPress(event) {
         if (event.key === "Enter") {
             await submitJournal();
-    }
+        }
     }
 
     return (
@@ -48,7 +51,7 @@ const Highlights = ({ useJournal }) => {
                 variant="standard"
             />
             <div style={{ marginTop: "20px" }}>
-                <button onClick={submitJournal} style={{ marginRight: "10px" }}>Confirm</button>
+                <button onClick={() => submitJournal(text)} style={{ marginRight: "10px" }}>Confirm</button>
             </div>
         </div>
     );

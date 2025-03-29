@@ -6,6 +6,7 @@ import Highlights from "../pages/Highlights";
 import StarRatingPage from '../pages/StarRating';
 import JournalLayout from '../base/JournalLayout';
 import React from 'react';
+import JournalSuccess from '../pages/Success';
 
 export const createRoutes = (journalState, JournalContext, useJournal) => {
   const FullJournalLayout = () => (
@@ -42,6 +43,10 @@ export const createRoutes = (journalState, JournalContext, useJournal) => {
             {
               path: "highlights",
               element: <Highlights useJournal={useJournal} />
+            },
+            {
+              path: "success",
+              element: <JournalSuccess />
             }
           ]
         },

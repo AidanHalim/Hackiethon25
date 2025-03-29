@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import { TextField } from "@mui/material";
+import { TextField, Button } from "@mui/material";
 import axios from "axios";
-import {motion} from "framer-motion";
+import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 
 const Highlights = ({ useJournal }) => {
     const navigate = useNavigate();
@@ -68,7 +69,32 @@ const Highlights = ({ useJournal }) => {
                 }}
             />
             <div style={{ marginTop: "20px" }}>
-                <button onClick={submitJournal} style={{ marginRight: "10px" }}>Confirm</button>
+                <MotionButton
+                    variant="outlined"
+                    onClick={() => submitJournal(true)}
+                    whileTap={{scale: 0.95}}
+                    whileHover={{
+                        scale: [1, 1.05],
+                        textShadow: "0px 0px 8px rgb(255, 255, 255)",
+                        boxShadow: "0px 0px 8px rgb(255, 255, 255)",
+                    }}
+                    animate={{scale: 1}}
+                    size="large"
+                    sx={{
+                        px: 4,
+                        py: 0.75,
+                        fontSize: '0.75rem',
+                        borderRadius: 2,
+                        color: 'white',
+                        borderColor: 'white',
+                        '&:hover': {
+                            borderColor: 'white',
+                            backgroundColor: 'rgba(255, 255, 255, 0.1)',
+                        },
+                    }}
+                >
+                    Confirm
+                </MotionButton>
             </div>
         </div>
     );

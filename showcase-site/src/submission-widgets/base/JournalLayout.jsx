@@ -1,6 +1,5 @@
 import { Outlet, useOutlet } from "react-router-dom";
-import Button from "@mui/material/Button";
-import Grid from "@mui/material/Grid";
+import { Button, Stack } from "@mui/material";
 import { useNavigate, useLocation } from 'react-router-dom';
 import { Typography } from "@mui/material";
 import { motion, AnimatePresence } from 'framer-motion';
@@ -49,15 +48,11 @@ const JournalLayout = ({ journalState }) => {
               </motion.div>
           </AnimatePresence>
 
-          <Grid container rowSpacing={1} columns={3} sx={{mt: 2}}>
-              <Grid size={1}>
-                  <Button onClick={handleBackClick}>Back</Button>
-              </Grid>
-              <Grid size={1}></Grid>
-              <Grid size={1}>
-                  <Button onClick={handleMenuClick}>Menu</Button>
-              </Grid>
-          </Grid>
+          <Stack direction="row" alignItems="center" justifyContent="center" spacing={10} sx={{mt: 5}}>
+            <Button onClick={handleBackClick}>Back</Button>
+            <Button onClick={handleMenuClick}>Menu</Button>
+          </Stack>
+          
       </div>
   )
 };

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import StarIcon from '@mui/icons-material/Star';
-import { Typography, Box, Rating } from '@mui/material';
+import { Typography, Box, Rating, Stack } from '@mui/material';
 import { motion } from 'framer-motion';
 import { useNavigate, useOutletContext } from 'react-router-dom';
 // import axios from 'axios';
@@ -55,8 +55,9 @@ const StarRatingPage = ({ useJournal }) => {
 
   return (
     <motion.div variants={pageVariant} initial="initial" animate="animate" transition={{ type: 'spring', delay: 0.5 }}>
-        <Typography sx={{ mb: 1.5 }}>How Was Your Day?</Typography>
-        <Box sx={{ display: 'flex', alignItems: 'center', flexDirection: 'column' }}>
+        
+        <Stack direction="column" spacing={2} alignItems="center" justifyContent="center">
+            <Typography sx={{ mb: 1.5 }}>How Was Your Day?</Typography>
             <Rating
                 value={rating}
                 precision={0.5}
@@ -81,7 +82,7 @@ const StarRatingPage = ({ useJournal }) => {
                     </Typography>
                 </Box>
             )}
-        </Box>
+        </Stack>
     </motion.div>
   );
 };

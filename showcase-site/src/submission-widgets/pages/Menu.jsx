@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router';
+import { useNavigate } from 'react-router';
 import axios from 'axios';
-import { Typography } from '@mui/material';
+import { Typography, Button } from '@mui/material';
 import fullStreakImg from '../../assets/plant.png';
 
 const Menu = () => {
+  const navigate = useNavigate();
   const [streak, setStreak] = useState(null);
   
   useEffect(() => {
@@ -32,9 +33,13 @@ const Menu = () => {
           {streak !== null ? `Current Streak: ${streak}` : "Loading..."}
         </Typography>
         
-        <img src={fullStreakImg} alt="streak" style={{ width: '220px', height: '220px' }} />
-
-        {/* <Link to="journal/star-rating" className="text-white">Go to Test</Link> */}
+        <div style={{ position: 'relative', width: '100%', height: '190px' }}>
+          <img src={fullStreakImg} alt="streak" style={{ width: '100%', height: '100%', display: 'block' }}
+          />
+          <Button onClick={() => navigate('/journal/star-rating')} variant="contained" style={{ fontSize: '12px', position: 'absolute', top: '90%', left: '50%', transform: 'translate(-50%, -50%)', zIndex: 1, width: "100%"}}>
+            Log Journal
+          </Button>
+        </div>
     </>
   );
 };

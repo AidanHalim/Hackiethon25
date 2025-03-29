@@ -115,6 +115,15 @@ def get_completed():
     except Exception as e:
         return {"error": str(e)}
       
+@app.get("/journal/history")
+def get_history():
+    with open(csv_file, newline="") as file:
+        data = pd.read_csv(csv_file, skiprows=1, names=["timestamp", "rating", "goalReview", "currGoal", "highlight"])
+
+        recent = data.tail(7).iloc[::-1]
+        recent = recent.fillna("").astype(str)
+        
+    return recent.to_dict(orient="records")
 
 if __name__ == "__main__":
     uvicorn.run("main:app", host="localhost", port=8000, reload=True)

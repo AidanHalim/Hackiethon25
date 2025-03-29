@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router';
+import { Link, useNavigate } from 'react-router';
 import axios from 'axios';
 import { Typography, Button } from '@mui/material';
 import ThreeLivesImg from '../assets/plant-3-lives.png';
@@ -56,7 +56,8 @@ const Menu = () => {
 
   return (
     <>
-        <MotionTypography variants={pageVariant} initial="initial" animate="animate" transition={{ type: 'spring', delay: 0.3 }} className="text-white">
+        <MotionTypography sx={{ cursor: 'pointer' }} onClick={() => navigate('journal/history')} variants={pageVariant} initial="initial" animate="animate" transition={{ type: 'spring', delay: 0.3 }} className="text-white"
+          whileHover={{scale: 1.05, color: "#eb3434"}}>
           {streak !== null ? `Current Streak: ${streak}` : "Loading..."}
         </MotionTypography>
       

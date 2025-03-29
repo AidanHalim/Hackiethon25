@@ -44,25 +44,6 @@ const Menu = () => {
     checkCompleted();
   }, [])
 
-
-  // useEffect(() => {
-  //   async function currentLives() {
-  //     try {
-  //       const response = await axios.get('http://localhost:8000/journal/lives');
-  //       if (response) {
-  //         console.log("Current lives fetched successfully:", response);
-  //         setLives(response.data.lives);
-  //       } else {
-  //         console.log("No current lives found.");
-  //         setLives(0);
-  //       }
-  //     } catch (error) {
-  //       console.error("Error fetching current lives:", error);
-  //     }
-  //   }
-  //   currentLives();
-  // }, []);
-
   return (
     <>
       <Typography className="text-white">

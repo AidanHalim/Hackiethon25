@@ -49,8 +49,8 @@ const JournalLayout = ({ journalState }) => {
           </AnimatePresence>
 
           <Stack direction="row" alignItems="center" justifyContent="center" spacing={10} sx={{mt: 5}}>
-            <Button onClick={handleBackClick}>Back</Button>
-            <Button onClick={handleMenuClick}>Menu</Button>
+            <Button variant="outlined" style={{ fontSize: '12px', position: 'absolute', top: '88%', left: '20%', transform: 'translate(-50%, -50%)', zIndex: 1 }} onClick={handleBackClick}>Back</Button>
+            <Button variant="outlined" style={{ fontSize: '12px', position: 'absolute', top: '88%', right: '0%', transform: 'translate(-50%, -50%)', zIndex: 1 }} onClick={handleMenuClick}>Menu</Button>
           </Stack>
           
       </div>

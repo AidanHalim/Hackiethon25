@@ -31,7 +31,7 @@ const GoalReview = ({ useJournal }) => {
                     </MotionButton>
 
                     <MotionButton variant="contained" color="error" onClick={() => handleClick(false)} whileTap={{ scale: 0.95 }} size="large" sx={{ px: 4, py: 0.75, fontSize: '0.75rem', borderRadius: 2}}
-                        whileHover={{ scale: 1.1, x: [0, -5, 5, -5, 5, 0], textShadow: "0px 0px 8px rgb(255, 255, 255)", boxShadow: "0px 0px 8px rgb(255, 255, 255)" }}>
+                        whileHover={{ scale: 1.1, x: [0, -5, 5, -5, 5, 0], textShadow: "0px 0px 8px rgb(255, 255, 255)", boxShadow: "0px 0px 8px rgb(255, 255, 255)" }} animate={{ x: 0 }}>
                         No
                     </MotionButton>
                 </Stack>

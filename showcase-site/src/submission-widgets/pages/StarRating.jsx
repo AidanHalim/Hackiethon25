@@ -56,7 +56,7 @@ const StarRatingPage = ({ useJournal }) => {
   return (
     <motion.div variants={pageVariant} initial="initial" animate="animate" transition={{ type: 'spring', delay: 0.5 }}>
         <Typography sx={{ mb: 1.5 }}>How Was Your Day?</Typography>
-        <Box sx={{ width: "250px", display: 'flex', alignItems: 'center', flexDirection: 'column' }}>
+        <Box sx={{ display: 'flex', alignItems: 'center', flexDirection: 'column' }}>
             <Rating
                 value={rating}
                 precision={0.5}

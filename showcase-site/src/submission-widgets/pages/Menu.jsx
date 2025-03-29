@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router';
 import axios from 'axios';
 import { Typography } from '@mui/material';
+import fullStreakImg from '../../assets/plant.png';
 
 const Menu = () => {
   const [streak, setStreak] = useState(null);
@@ -27,10 +28,13 @@ const Menu = () => {
 
   return (
     <>
-        <Typography className="text-white">{streak !== null ? `Current Streak: ${streak}` : "Loading..."}</Typography>
+        <Typography className="text-white">
+          {streak !== null ? `Current Streak: ${streak}` : "Loading..."}
+        </Typography>
         
-        
-        <Link to="journal/star-rating" className="text-white">Go to Test</Link>
+        <img src={fullStreakImg} alt="streak" style={{ width: '220px', height: '220px' }} />
+
+        {/* <Link to="journal/star-rating" className="text-white">Go to Test</Link> */}
     </>
   );
 };
